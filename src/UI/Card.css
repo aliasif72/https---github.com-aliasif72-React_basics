@@ -1,0 +1,50 @@
+.container{
+    margin:auto;
+    position: relative;
+    top:30px;
+    height:270px;
+    width:650px;
+    border-radius: 10px ;
+    border:3px solid rgb(255, 255, 255);
+    background-color: rgb(255, 211, 161);
+}
+
+.container label{
+   display: flex;
+   padding:10px 0px 0px 20px;
+   font-size: 1.3rem;
+  }
+
+
+.container input{
+    position: relative;
+    top: 10px;
+    left: 20px;
+    inline-size: 25rem;
+    block-size: 1.8rem;
+    font-size:medium;
+    }
+  
+    .error{
+        margin:auto;
+        position:relative;
+        height:200px;
+        width:580px;
+        top:-2rem;
+        background-color: rgb(133, 102, 102);
+    }
+        
+    .error h2{
+        background-color:rgb(68, 23, 29);
+        padding:10px;
+        border-radius: 10px 10px 0px 0px;
+        color:blanchedalmond;
+        font-weight: 450;
+      }
+    
+      .error p{
+        padding:0px 0px 0px 20px;
+        color:rgb(255, 255, 255);
+        font-weight: 400;
+        font-size: 1.1rem;
+        }
