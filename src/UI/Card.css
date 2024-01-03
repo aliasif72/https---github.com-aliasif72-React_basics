@@ -1,0 +1,35 @@
+.container{
+    margin:auto;
+    position: relative;
+    top:30px;
+    width:650px;
+    height:auto;
+    border-radius: 10px;
+    border:3px solid rgb(255, 255, 255);
+    background-color: rgb(255, 211, 161);
+}
+
+  
+    .messag{
+        margin:auto;
+        position:relative;
+        height:200px;
+        width:580px;
+        top:-2rem;
+        background-color: rgb(133, 102, 102);
+    }
+        
+    .messag h2{
+        background-color:rgb(68, 23, 29);
+        padding:10px;
+        border-radius: 10px 10px 0px 0px;
+        color:blanchedalmond;
+        font-weight: 450;
+      }
+    
+      .messag p{
+        padding:0px 0px 0px 20px;
+        color:rgb(255, 255, 255);
+        font-weight: 400;
+        font-size: 1.1rem;
+        }

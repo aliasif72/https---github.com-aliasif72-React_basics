@@ -1,0 +1,21 @@
+.submit{
+margin-right: 25px;
+float: right;
+padding: 12px;
+font-size: 1rem;
+border-radius: 8px;
+background-color: rgb(248, 148, 66);
+color: rgb(255, 255, 255);
+}
+
+.close{
+font-size: 1rem;
+float: inline-end;
+position: relative;
+right:35px;
+padding: 12px;
+width:90px;
+border-radius: 8px;
+background-color: rgb(68, 23, 29);
+color: rgb(230, 228, 228);
+}
