@@ -118,4 +118,4 @@ return (
 )
 }
 
-export default Signup;
+export default Sig
