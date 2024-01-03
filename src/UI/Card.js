@@ -2,8 +2,7 @@ import './Card.css';
 
 function Card(props){
 return(
-    <div className={props.className}>{props.children}
-    </div>
+    <div className={props.className}>{props.children}</div>
 )
 }
 

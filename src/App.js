@@ -1,17 +1,14 @@
-import Form from './Components/Form'
+import Form from './Components/Form';
 
 function App() {
-
-  const arr=[];
-
+   const arr=[];
   function addData(data){
     arr.push(data);
     console.log(arr);
-      }
-
+               }
   return (
-       <Form prop={addData}/>
-  );
+      <Form onData={addData}/>
+  )
 }
 
 export default App;

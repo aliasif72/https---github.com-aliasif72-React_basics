@@ -6,3 +6,42 @@
   }
 
   
+.container label{
+  display: flex;
+  padding:10px 0px 0px 20px;
+  font-size: 1.3rem;
+ }
+
+
+.container input{
+   position: relative;
+   top: 4px;
+   left: 20px;
+   border-radius: 10px;
+   inline-size: 25rem;
+   block-size: 1.8rem;
+   font-size:medium;
+   }
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+ -webkit-appearance: none;
+ margin: 0;
+}
+
+input[type="file"]{
+ opacity: 0;
+}
+
+.container button[type="button"]{
+ padding:2px 2px;
+ width:150px;
+ height:auto;
+ border-radius: 11px;
+ position: relative;
+ left: 20px;
+ background-color: blanchedalmond;
+  border:none;
+ outline: none;
+ overflow: hidden;
+}

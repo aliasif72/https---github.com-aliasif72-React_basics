@@ -1,74 +1,38 @@
-import Card from '../UI/Card';
-import './Form.css';
-import Button from '../UI/Button';
-import {useState} from 'react';
-import Error from './Error';
+import Card from "../UI/Card"
+import Button from "../UI/Button";
+import { useState } from "react";
+import Signup from "./Signup";
+import Login from "./Login";
 
 function Form(props){
+    const[form,Setform]=useState("1");
     
-const[data,setData]=useState({
-    inputName:'',
-    inputAge:''
-})
+      function signinHandler(){
+         Setform("2");
+               }
+      
+      function signupHandler(){
+        Setform("3");
+      }
 
-const[error,setError]=useState(false);
-
-function nameHandler(event){
-    setData((prevData)=> {
-        return { ...prevData,inputName:event.target.value }
-    })
-}
-
-function ageHandler(event){
-setData((prevData)=> {
-    return { ...prevData,inputAge:event.target.value }
-})
-}
-
-function formSubmit(event){
-    event.preventDefault();
-    if(data.inputName.trim().length===0 || data.inputAge.trim().length===0)
+    if(form === "1") 
+    return(
+ <Card className="container">
+   <h2>Welcome to Registration</h2>
+ <Button className="submit" onClose={signinHandler} type="submit" text="Sign in"></Button>
+ <Button className="submit" onClose={signupHandler} type="submit" text="Sign up"></Button>
+ <br/> <br/> 
+  <br/> <br/>
+</Card>
+    )
+    else if(form === "2")
     {
-       return setError({
-            title:'Invalid Input',
-            msg:'Please enter a valid name and age'
-        })
-         }
-    if(data.inputAge < 1)
+        return( <Login/>)
+    }
+    else
     {
-        return setError({
-            title:'Invalid Age',
-            msg:'Please enter a valid age (age > 0)'
-        })
+        return (<Signup onSuccess={signinHandler} prop={props.onData}/>)
     }
-         props.prop(data);
-     setData({
-        inputName:'',
-        inputAge:''
-     })
-}
-
-    function closeHandler(){
-        setError(false);
-    }
-
-   
-
-return (
-    <div className="bodys">
-    <Card className="container">
-    <form onSubmit={formSubmit}>
-    <label> Username </label>
-     <input onChange={nameHandler} value={data.inputName} type="text"/>
-     <br/> <br/>
-     <label> Age</label>
-     <input  onChange={ageHandler} value={data.inputAge} type="number"/>
-     <Button className="submit" type="submit" text="Add User"/>
-     </form>
-    </Card>
-    {(error) &&<Error title={error.title} msg={error.msg} onClose={closeHandler} />}
-    </div> 
-)
 }
 
 export default Form;
