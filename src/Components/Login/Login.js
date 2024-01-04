@@ -1,4 +1,4 @@
-import React, {  useState, useReducer} from 'react';
+import React, {  useState, useReducer, useEffect} from 'react';
 
 import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
@@ -9,10 +9,6 @@ function emailReducer(state, action){
   {
     return {value:action.val, isValid:action.val.includes('@')} 
   }
-  if(action.type==='INPUT_BLUR')
-  {
-    return {value:state.value, isValid:state.value.includes('@')} 
-  }
   return {value:'', isValid:false}
 
 };
@@ -21,10 +17,6 @@ function passwordReducer(state, action){
   if(action.type==='USER_INPUT')
   {
     return { value:action.val, isValid:action.val.trim().length > 6 } 
-      }
-  if(action.type==='INPUT_BLUR')
-  {
-    return {value:state.value, isValid:state.value.trim().length > 6} 
   }
   return {value:'', isValid:false}
 
@@ -35,10 +27,6 @@ function collegeReducer(state, action){
   {
     return { value:action.val, isValid:action.val.trim().length > 6 } 
   }
-  if(action.type==='INPUT_BLUR')
-  {
-    return {value:state.value, isValid:state.value.trim().length > 6} 
-  }
   return {value:'', isValid:false}
 
 };
@@ -46,41 +34,34 @@ function collegeReducer(state, action){
 function Login(props){
 
   const [formIsValid, setFormIsValid] = useState(false);
+  const[emailState,emailDispatcher ] = useReducer(emailReducer, {value:'', isValid:true});
+  const[passwordState,passwordDispatcher ] = useReducer(passwordReducer, {value:'', isValid:true});
+  const[collegeState,collegeDispatcher ] = useReducer(collegeReducer, {value:'', isValid:true});
 
-  const[emailState,emailDispatcher ] = useReducer(emailReducer, {value:'', isValid:false});
-  const[passwordState,passwordDispatcher ] = useReducer(passwordReducer, {value:'', isValid:false});
-  const[collegeState,collegeDispatcher ] = useReducer(collegeReducer, {value:'', isValid:false});
+  useEffect(()=>{
+    const timer = setTimeout(()=>{
+      setFormIsValid(
+        emailState.isValid && passwordState.isValid && collegeState.isValid);
+    },500)
+    return ()=>{
+         clearTimeout(timer)      
+    }},[emailState.isValid, passwordState.isValid, collegeState.isValid])
 
-  const emailChangeHandler = (event) => {
+   const emailChangeHandler = (event) => {
     emailDispatcher({type:'USER_INPUT', val:event.target.value})
-    setFormIsValid(
-      event.target.value.includes('@') && passwordState.isValid && collegeState.isValid);
+   
   }
-
-  // const validateEmailHandler = () => {
-  //   emailDispatcher({type:'INPUT_BLUR'});
-  // }
-  
-  const passwordChangeHandler = (event) => {
+   const passwordChangeHandler = (event) => {
     passwordDispatcher({type:'USER_INPUT', val:event.target.value});
     setFormIsValid(
            emailState.isValid && event.target.value.trim().length > 6 && collegeState.isValid)
   }
-
-  // const validatePasswordHandler = () => {
-  //   passwordDispatcher({type:'INPUT_BLUR'});
-  // };
-
 
   const CollegeChangeHandler = (event) => {
     collegeDispatcher({type:'USER_INPUT', val:event.target.value})
     setFormIsValid(
       emailState.isValid && passwordState.isValid && event.target.value.trim().length > 6);
   }
-  
-  // const validateCollegeHandler = () => {
-  //   collegeDispatcher({type:'INPUT_BLUR'});
-  // };
   
   const submitHandler = (event) => {
     event.preventDefault();
@@ -101,8 +82,7 @@ function Login(props){
             id="email"
             value={emailState.value}
             onChange={emailChangeHandler}
-            //onBlur={validateEmailHandler}
-          />
+               />
         </div>
         <div
           className={`${classes.control} ${
@@ -115,8 +95,7 @@ function Login(props){
             id="password"
             value={passwordState.value}
             onChange={passwordChangeHandler}
-            //onBlur={validatePasswordHandler}
-          />
+           />
         </div>
         <div
           className={`${classes.control} ${
@@ -129,8 +108,7 @@ function Login(props){
             id="text"
             value={collegeState.value}
             onChange={CollegeChangeHandler}
-            //onBlur={validateCollegeHandler}
-          />
+            />
         </div>
         <div className={classes.actions}>
           <Button type="submit" className={classes.btn} disabled={!formIsValid}>
